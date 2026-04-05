@@ -1,101 +1,101 @@
 const twinProfile = {
   name: "林越",
-  role: "产品战略负责人 / 31 岁 / 上海 / Bio Twin Subject",
-  brief: "这个身体适合高强度判断，不适合持续高密度输入。一旦会议和社交叠加，心率、呼吸节律与神经负荷会一起抬升。",
-  archetype: "HIGH COGNITION / LOW NOISE",
-  recovery: "SOLO WALK / LOW INPUT / BREATH RESET",
+  role: "策略负责人 / 31 岁 / 上海 / 逸疗病例对象",
+  brief: "这个身体适合高质量判断，不适合长时间高噪音输入。会议和社交一旦叠加，模型会先看到 HRV、呼吸节律和认知储备一起收缩。",
+  archetype: "ADULT BODY / HIGH COGNITION / LOW NOISE",
+  recovery: "WALK / QUIET / BREATH RESET",
   bestWindow: "10:30 - 12:30",
   values: "OXYGEN / CLARITY / RECOVERY",
   traits: [
-    "PROTECT CLARITY FIRST",
-    "SOCIAL NOISE COSTS MORE",
-    "LOW SLEEP REDUCES FLOW",
-    "WALK RESETS THE SYSTEM",
-    "RECOVERY WINDOW IS HARD RULE",
-    "ANATOMY + VITALS SHOULD BE LINKED",
+    "MORNING CARRIES THE BEST WORK",
+    "HRV DROPS BEFORE OUTPUT QUALITY",
+    "SOCIAL NOISE COSTS MORE THAN TASK COUNT",
+    "WALK IS THE CHEAPEST RESET",
+    "EVENING RECOVERY IS NON-NEGOTIABLE",
+    "BODY SHAPE + VITALS MUST STAY LINKED",
   ],
   facts: [
     { label: "Height", value: "178 cm" },
     { label: "Weight", value: "71 kg" },
     { label: "Body Fat", value: "16.8%" },
-    { label: "Twin Coverage", value: "74%" },
+    { label: "Anatomy Depth", value: "74%" },
   ],
 };
 
 const twinLayers = [
   {
     index: "01",
-    title: "Capture Surface",
-    body: "先建立一个像人的身体本体。身高、体重、围度、体脂、姿态和扫描结果，决定 Twin 的外壳层。",
+    title: "Body Shell",
+    body: "先建立体表壳层与成年人体型分割，让用户先看到一具可信的身体本体，而不是概念插画。",
   },
   {
     index: "02",
-    title: "Read Vitals",
-    body: "SpO2、心率、血压、HRV、睡眠和恢复，是 Twin 的运行状态层，让身体不是静止模型。",
+    title: "Vitals Layer",
+    body: "把 SpO2、心率、血压、HRV 和恢复指数贴回壳层，让状态变化始终依附在同一具身体上。",
   },
   {
     index: "03",
-    title: "Map Anatomy",
-    body: "骨骼、器官、肌肉和影像结构把 Twin 从健康记录器，推进成真正的人体地图。",
+    title: "Anatomy Map",
+    body: "骨骼、器官和结构热点负责解释内部层，让系统可以被分段查看、定位和说明。",
   },
   {
     index: "04",
-    title: "Explain Change",
-    body: "长期节奏、阈值和行为记忆决定为什么同样的输入，不同人会走向完全不同的身体状态。",
+    title: "Explainability",
+    body: "最后把变化翻译成 findings、趋势和建议，形成一页能交付的临床解释界面。",
   },
 ];
 
 const signalStream = [
   {
-    label: "Wearables + HealthKit",
-    title: "PPG、SpO2、HRV 与睡眠，负责把身体从静态档案变成活体状态流",
-    body: "这一步解决的是“现在这个身体正在发生什么”，而不只是记录一张历史报告。",
+    label: "Surface Capture",
+    title: "体表扫描、围度和姿态重建，先把“这具身体是谁”建立起来",
+    body: "第一页必须先给出可信的成年人体本体，否则后面的器官层和体征层都只会像概念图。",
   },
   {
-    label: "Body Scan",
-    title: "3D 身体扫描、围度和姿态，让用户先认出这是自己，再去理解数据",
-    body: "身体壳层必须清楚可信，否则后面的器官层和趋势层都只会像概念图。",
+    label: "Vital Stream",
+    title: "Wearables、PPG、SpO2、HRV 与睡眠，让系统从静态模型变成活体状态流",
+    body: "这一步解决的是“现在这具身体正在发生什么”，而不是只留下一张历史报告。",
   },
   {
-    label: "Imaging + Anatomy",
-    title: "骨骼与器官层来自影像、模型或规则化解剖映射，负责解释身体内部结构",
-    body: "这层决定产品看起来像数字孪生，还是只像一堆漂亮图表。",
+    label: "Anatomy Stack",
+    title: "影像、规则化解剖和器官映射，负责让内部层能被查看、聚焦和解释",
+    body: "这层决定产品看起来像临床数字孪生，还是只像一堆漂亮图表。",
   },
   {
     label: "Behavior Memory",
-    title: "日历、活动、恢复习惯和长期节奏，定义这个身体的反应阈值与变化路径",
-    body: "同样的压力输入，不同人会有完全不同的心率、呼吸和恢复走势。",
+    title: "日历、活动、恢复习惯和长期节奏，决定这个身体会如何被时间持续改写",
+    body: "同样的压力输入，不同人会有完全不同的心率、呼吸和恢复路径。",
   },
 ];
 
 const memoryNodes = [
   {
-    year: "2021",
-    title: "连续数周高压冲刺后，开始出现晚上心率难降",
-    body: "从那以后，模型会把晚间恢复窗口视为硬约束，而不是可选项。",
+    year: "Finding 01",
+    title: "晚间恢复储备会先于血氧下降",
+    body: "这具身体在高密度会议和社交叠加时，通常先掉的是 HRV 与认知储备，所以“看起来还能撑”不代表还适合继续透支。",
   },
   {
-    year: "2023",
-    title: "固定步行习惯形成，恢复速度明显提升",
-    body: "步行被识别为这个身体最稳定的降载动作之一，优先级高于被动刷信息。",
+    year: "Finding 02",
+    title: "步行是最稳定、成本最低的回稳动作",
+    body: "与继续刷信息相比，步行更快让心率和呼吸节律回落。对这具身体来说，它比被动休息更有效。",
   },
   {
-    year: "2024",
-    title: "高频出差阶段让睡眠和 HRV 出现波动",
-    body: "模型因此更看重节奏连续性，一旦休息被打断，第二天神经负荷会上升得更快。",
+    year: "Finding 03",
+    title: "上午窗口承载最重的判断任务",
+    body: "模型把 10:30 到 12:30 识别为最适合深度工作的区间。越晚处理高噪音沟通，恢复代价越高。",
   },
   {
-    year: "2025",
-    title: "角色更偏策略后，脑负荷开始高于执行负荷",
-    body: "这让 Twin 在评估状态时，会优先关注认知占用与恢复储备，而不是任务数量本身。",
+    year: "Finding 04",
+    title: "数字孪生必须同时看外形层和体征层",
+    body: "如果人体外壳、体型变化和内部体征脱节，用户只会看到漂亮图，而不会信这真是自己的身体模型。",
   },
 ];
 
 const quickPrompts = [
-  "如果今晚继续开会，这个版本的我会怎样？",
-  "现在更适合运动还是恢复？",
-  "哪个系统最需要被保护？",
-  "给我一个更稳的身体排程",
+  "如果把今晚两场会推迟，恢复窗口会回稳多少？",
+  "现在最该优先保护的是哪一层？",
+  "如果只留 30 分钟恢复，代价是什么？",
+  "给我一个今天更稳的身体排程",
 ];
 
 const controls = {
@@ -134,6 +134,8 @@ const refs = {
   profileValues: document.querySelector("#profileValues"),
   traitCloud: document.querySelector("#traitCloud"),
   subjectFacts: document.querySelector("#subjectFacts"),
+  sliceGrid: document.querySelector("#sliceGrid"),
+  heroReportGrid: document.querySelector("#heroReportGrid"),
   compositionRail: document.querySelector("#compositionRail"),
   signalStream: document.querySelector("#signalStream"),
   memoryList: document.querySelector("#memoryList"),
@@ -164,7 +166,7 @@ const refs = {
   reveals: document.querySelectorAll(".reveal"),
 };
 
-let activeLayer = "3d";
+let activeLayer = "skin";
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
@@ -220,8 +222,10 @@ function initializePage() {
       (item) => `
         <article class="memory-item">
           <span class="memory-year">${item.year}</span>
-          <strong>${item.title}</strong>
-          <p>${item.body}</p>
+          <div>
+            <strong>${item.title}</strong>
+            <p>${item.body}</p>
+          </div>
         </article>
       `
     )
@@ -382,24 +386,48 @@ function getStageStateLabel(tone) {
   return "STABLE WINDOW";
 }
 
-function getLayerNarrative(layer, state) {
-  if (layer === "3d") {
-    return `3D Shell 负责建立最直观的身体感。先看到一个真实可旋转的人体，再决定要不要继续钻进 Body Map、器官层和体征层。当前恢复余量 ${state.recoveryReserve}。`;
+function getLayerStageLabel(layer) {
+  if (layer === "skin") {
+    return "BODY SHELL";
   }
 
-  if (layer === "skin") {
-    return `Body Shell 负责先建立“这就是这个人”的第一印象。当前最重要的不只是外形，而是这个身体仍保有 ${state.recoveryReserve} 的恢复余量。`;
+  if (layer === "organs") {
+    return "ORGANS";
   }
 
   if (layer === "skeleton") {
-    return "Skeleton 层强调结构和承载路径。它让 Twin 看起来不只是穿戴设备数据，而是真正有骨架、有姿态的人体模型。";
+    return "SKELETON";
+  }
+
+  return "VITALS";
+}
+
+function getLayerNarrative(layer, state) {
+  if (layer === "skin") {
+    return `当前查看临床壳层。先确认体型和姿态，再切到器官、骨骼与体征层。恢复指数 ${state.recoveryReserve}。`;
+  }
+
+  if (layer === "skeleton") {
+    return "当前查看骨骼层。重点是结构路径、承载关系和姿态支撑。";
   }
 
   if (layer === "vitals") {
-    return `Vitals 层展示这个身体此刻如何运行：SpO2 ${state.spo2}% 、心率 ${state.heartRate} BPM、HRV ${state.hrv} ms，说明恢复与压力正在怎样拉扯。`;
+    return `当前查看体征层。SpO2 ${state.spo2}% 、心率 ${state.heartRate} BPM、HRV ${state.hrv} ms。`;
   }
 
-  return `当前展示器官层。神经负荷 ${state.brainLoad}% 、心血管负荷 ${state.cardiacLoad}% 、呼吸交换 ${state.lungExchange}% 会一起决定这个身体还能不能继续高质量输出。`;
+  return `当前查看器官层。神经负荷 ${state.brainLoad}% 、心血管负荷 ${state.cardiacLoad}% 、呼吸交换 ${state.lungExchange}%。`;
+}
+
+function getAtlasSummary(state) {
+  if (state.stress > 60 || state.heartRate > 82 || state.hrv < 48) {
+    return "当前系统判断：压力信号已经从体征层传到恢复层，优先保护呼吸、心率和晚间回落窗口，不要再把身体当成还能硬扛的稳态模型。";
+  }
+
+  if (state.neuralReserve > 76 && state.perfusion > 82 && state.hrv > 62) {
+    return "当前系统判断：外壳层、体征层和恢复层仍然对齐，这具身体正处在高质量输出窗口，适合先做少而重的动作。";
+  }
+
+  return "当前系统判断：身体仍可持续运行，但如果继续叠加会议和社交，最先收缩的不会是意志力，而是恢复储备、认知耐心和呼吸节律。";
 }
 
 function getSpo2Note(state) {
@@ -486,27 +514,269 @@ function getRecoveryNote(state) {
   return "身体仍有恢复余量";
 }
 
+function getPrimaryClinicalFocus(state) {
+  if (state.lungExchange < 74 || state.spo2 < 95) {
+    return {
+      title: "Respiratory Window",
+      note: "先保护呼吸交换和氧合稳定，避免继续抬高兴奋水平。",
+    };
+  }
+
+  if (state.cardiacLoad > 68 || state.heartRate > 82) {
+    return {
+      title: "Cardiac Recovery",
+      note: "循环系统已经开始承压，需要先拉回心率和灌注节律。",
+    };
+  }
+
+  if (state.brainLoad > 64) {
+    return {
+      title: "Neural Quieting",
+      note: "认知层正在接近拐点，应先降低噪音和输入密度。",
+    };
+  }
+
+  return {
+    title: "Recovery Corridor",
+    note: "目前最值得保护的是晚间回落窗口，让恢复层继续保持打开状态。",
+  };
+}
+
+function getClinicalAction(state) {
+  if (state.recoveryReserve < 42) {
+    return "立即降载并留出完整恢复窗口";
+  }
+
+  if (state.cardiacLoad > 68 || state.heartRate > 82) {
+    return "先步行或静坐 20 分钟，再安排高负荷沟通";
+  }
+
+  if (state.brainLoad > 64) {
+    return "优先处理重判断任务，砍掉不必要同步";
+  }
+
+  return "维持当前节奏，但提前锁定今晚恢复时间";
+}
+
+function formatReviewTime(offsetMinutes = 0) {
+  const value = new Date(Date.now() - offsetMinutes * 60_000);
+  return new Intl.DateTimeFormat("zh-CN", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(value);
+}
+
+function getClinicalFlags(state) {
+  const flags = [];
+
+  if (state.hrv < 48) {
+    flags.push({ label: "Low HRV", tone: "alert" });
+  }
+
+  if (state.heartRate > 82) {
+    flags.push({ label: "Elevated HR", tone: "alert" });
+  }
+
+  if (state.lungExchange < 74 || state.spo2 < 95) {
+    flags.push({ label: "Respiratory Drift", tone: "watch" });
+  }
+
+  if (state.brainLoad > 64) {
+    flags.push({ label: "Cognitive Strain", tone: "watch" });
+  }
+
+  if (state.recoveryReserve < 60) {
+    flags.push({ label: "Recovery Compression", tone: "watch" });
+  }
+
+  if (flags.length === 0) {
+    flags.push({ label: "Stable Window", tone: "ok" });
+  }
+
+  return flags;
+}
+
+function getWindowBadge(kind, state) {
+  if (kind === "thoracic") {
+    if (state.lungExchange < 68 || state.spo2 < 94) {
+      return { label: "Observe", tone: "alert" };
+    }
+
+    if (state.lungExchange < 78 || state.spo2 < 96) {
+      return { label: "Watch", tone: "watch" };
+    }
+
+    return { label: "Stable", tone: "ok" };
+  }
+
+  if (kind === "cardiac") {
+    if (state.cardiacLoad > 76 || state.heartRate > 88) {
+      return { label: "Elevated", tone: "alert" };
+    }
+
+    if (state.cardiacLoad > 64 || state.heartRate > 76) {
+      return { label: "Watch", tone: "watch" };
+    }
+
+    return { label: "Stable", tone: "ok" };
+  }
+
+  if (state.recoveryReserve < 42) {
+    return { label: "Reduced", tone: "alert" };
+  }
+
+  if (state.recoveryReserve < 60) {
+    return { label: "Narrow", tone: "watch" };
+  }
+
+  return { label: "Open", tone: "ok" };
+}
+
+function renderHeroEvidence(state) {
+  const tone = getStageTone(state);
+  const flags = getClinicalFlags(state);
+  const slices = [
+    {
+      series: "Series A1",
+      label: "Thoracic Window",
+      metric: "Lung Exchange",
+      value: `${state.lungExchange}%`,
+      note: getLungExchangeNote(state),
+      width: state.lungExchange,
+      updated: formatReviewTime(4),
+      badge: getWindowBadge("thoracic", state),
+      previewClass: "thoracic",
+    },
+    {
+      series: "Series B3",
+      label: "Cardiac Window",
+      metric: "Cardiac Load",
+      value: `${state.cardiacLoad}%`,
+      note: getCardiacLoadNote(state),
+      width: state.cardiacLoad,
+      updated: formatReviewTime(9),
+      badge: getWindowBadge("cardiac", state),
+      previewClass: "cardiac",
+    },
+    {
+      series: "Series R2",
+      label: "Recovery Window",
+      metric: "Recovery Index",
+      value: String(state.recoveryReserve),
+      note: getRecoveryNote(state),
+      width: state.recoveryReserve,
+      updated: formatReviewTime(14),
+      badge: getWindowBadge("recovery", state),
+      previewClass: "recovery",
+    },
+  ];
+
+  const focus = getPrimaryClinicalFocus(state);
+  const reportRows = [
+    {
+      label: "Primary Focus",
+      value: focus.title,
+      meta: `Reviewed ${formatReviewTime(2)}`,
+      tone: tone === "alert" ? "alert" : tone === "recover" ? "watch" : "ok",
+      note: focus.note,
+    },
+    {
+      label: "Model Status",
+      value: getStageStateLabel(getStageTone(state)),
+      meta: `Sync check ${formatReviewTime(1)}`,
+      tone: tone === "alert" ? "alert" : "ok",
+      note: `模型可靠度 ${state.confidence}% ，体表与体征同步度保持在可解释区间。`,
+    },
+    {
+      label: "Abnormality Tags",
+      value: flags.map((item) => item.label).join(" / "),
+      meta: `Flags ${flags.length}`,
+      tone: flags.some((item) => item.tone === "alert") ? "alert" : flags.some((item) => item.tone === "watch") ? "watch" : "ok",
+      note: "异常标签来自呼吸、循环、恢复和认知负荷的联合筛查，不依赖单一指标。",
+    },
+    {
+      label: "Next Clinical Step",
+      value: getClinicalAction(state),
+      meta: `Action ${formatReviewTime(0)}`,
+      tone: "ok",
+      note: `当前 SpO2 ${state.spo2}% ，HRV ${state.hrv} ms，建议把恢复策略提前到今天晚间。`,
+    },
+  ];
+
+  refs.sliceGrid.innerHTML = slices
+    .map(
+      (item) => `
+        <article class="slice-card">
+          <div class="slice-card-head">
+            <div>
+              <span>${item.series}</span>
+              <strong>${item.label}</strong>
+            </div>
+            <b class="status-badge tone-${item.badge.tone}">${item.badge.label}</b>
+          </div>
+          <div class="slice-preview ${item.previewClass}">
+            <i></i>
+          </div>
+          <div class="slice-meta">
+            <span>${item.metric}</span>
+            <span>${item.value}</span>
+            <span>Updated ${item.updated}</span>
+          </div>
+          <p>${item.note}</p>
+          <div class="slice-meter"><i class="tone-${item.badge.tone}" style="width:${item.width}%"></i></div>
+        </article>
+      `
+    )
+    .join("");
+
+  refs.heroReportGrid.innerHTML = reportRows
+    .map(
+      (item) => `
+        <article class="report-row">
+          <div class="report-row-head">
+            <span>${item.label}</span>
+            <b class="status-badge tone-${item.tone}">${item.meta}</b>
+          </div>
+          <strong>${item.value}</strong>
+          <p>${item.note}</p>
+        </article>
+      `
+    )
+    .join("") + `
+      <article class="report-note">
+        <span>Clinician Note</span>
+        <strong>当前建议优先保护恢复窗口，而不是继续追求表面稳定。</strong>
+        <p>如果今晚继续叠加会议和高噪音输入，最先收缩的通常是 HRV、呼吸节律和认知耐心，而不是血氧数字本身。</p>
+      </article>
+    `;
+}
+
 function renderSystemBars(state) {
+  const vitalSync = clamp(Math.round(state.spo2 * 0.55 + state.hrv * 0.45), 18, 98);
+  const anatomyReadiness = clamp(Math.round((state.perfusion + state.lungExchange + (100 - state.cardiacLoad)) / 3), 18, 98);
   const systems = [
     {
-      label: "Neural Reserve",
-      value: state.neuralReserve,
-      note: state.neuralReserve > 70 ? "仍适合深度判断与结构化输出" : "认知耐心开始收缩",
+      label: "Surface Fidelity",
+      value: state.confidence,
+      note: state.confidence > 88 ? "外壳层和当前身体画像保持一致" : "扫描层还需要更多上下文校准",
     },
     {
-      label: "Circulation",
-      value: state.perfusion,
-      note: state.perfusion > 78 ? "末梢灌注仍在友好区间" : "循环表现开始变紧",
+      label: "Vital Sync",
+      value: vitalSync,
+      note: vitalSync > 78 ? "生命体征与主模型同步稳定" : "状态层开始出现不同步",
     },
     {
-      label: "Respiration",
-      value: state.respirationEfficiency,
-      note: state.respirationEfficiency > 78 ? "呼吸效率稳定" : "呼吸已经明显受压力影响",
+      label: "Anatomy Readiness",
+      value: anatomyReadiness,
+      note: anatomyReadiness > 72 ? "器官与循环层仍在可解释区间" : "结构层信号正在变紧",
     },
     {
-      label: "Recovery",
+      label: "Recovery Margin",
       value: state.recoveryReserve,
-      note: state.recoveryReserve > 60 ? "仍有恢复空间" : "恢复必须被优先保护",
+      note: state.recoveryReserve > 60 ? "身体还留有恢复空间" : "恢复必须被优先保护",
     },
   ];
 
@@ -561,9 +831,9 @@ function renderState() {
 
   refs.bodyStage.dataset.layer = activeLayer;
   refs.bodyStage.dataset.state = tone;
-  refs.stageState.textContent = `${activeLayer.toUpperCase()} / ${getStageStateLabel(tone)}`;
+  refs.stageState.textContent = `${getLayerStageLabel(activeLayer)} / ${getStageStateLabel(tone)}`;
   refs.layerNarrative.textContent = getLayerNarrative(activeLayer, state);
-  refs.summaryCopy.textContent = state.summary;
+  refs.summaryCopy.textContent = getAtlasSummary(state);
 
   refs.forecastTitle.textContent = state.title;
   refs.forecastSummary.textContent = state.summary;
@@ -586,6 +856,7 @@ function renderState() {
   refs.recoveryValue.textContent = String(state.recoveryReserve);
   refs.recoveryNote.textContent = getRecoveryNote(state);
 
+  renderHeroEvidence(state);
   renderSystemBars(state);
   updateForecastBars(state.forecast);
 
@@ -730,7 +1001,7 @@ function seedConversation() {
   );
   appendMessage(
     "twin",
-    "你可以直接问我：如果今晚继续开会会怎样、现在更适合运动还是恢复，或者哪个系统最需要被保护。"
+    "你可以直接问我：如果把今晚两场会推迟，这个身体会回稳多少，或者现在最该保护的是哪一层。"
   );
 }
 
