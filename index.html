@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Twin Atlas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-noise"></div>
+
+    <main class="page">
+      <header class="hero reveal">
+        <div class="hero-inner">
+          <section class="hero-copy">
+            <div class="brand-strip">
+              <span class="eyebrow">Personal Anatomy OS</span>
+              <div class="product-mark">Twin Atlas</div>
+            </div>
+
+            <h1>把一个人的身体，变成一份可视、可解释、可持续更新的人体地图。</h1>
+            <p class="hero-text">
+              Twin Atlas 把身体扫描、生命体征、结构层和长期行为模式合到同一个界面里。用户先看到自己的身体本体，再逐层打开器官、骨骼、体征和变化趋势，而不是面对一堆抽象指标。
+            </p>
+
+            <div class="hero-actions">
+              <button class="action-primary" data-scroll-target="simulator" type="button">Run Body Simulation</button>
+              <button class="action-secondary" data-scroll-target="converse" type="button">Open Twin Dialogue</button>
+            </div>
+
+            <dl class="hero-metrics">
+              <div>
+                <dt>SpO2</dt>
+                <dd id="heroSpo2">97%</dd>
+              </div>
+              <div>
+                <dt>Heart Rate</dt>
+                <dd id="heroHeart">64 BPM</dd>
+              </div>
+              <div>
+                <dt>Recovery Reserve</dt>
+                <dd id="heroRecovery">74</dd>
+              </div>
+              <div>
+                <dt>Model Confidence</dt>
+                <dd id="heroConfidence">92%</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="hero-stage">
+            <div class="stage-meta">
+              <span>Subject // LY-031</span>
+              <span id="stageState">3D SHELL / STABLE</span>
+            </div>
+
+            <div class="layer-switch" id="layerSwitch">
+              <button class="layer-chip is-active" data-layer="3d" type="button" aria-pressed="true">3D Shell</button>
+              <button class="layer-chip" data-layer="skin" type="button" aria-pressed="false">Body Map</button>
+              <button class="layer-chip" data-layer="organs" type="button" aria-pressed="false">Organs</button>
+              <button class="layer-chip" data-layer="skeleton" type="button" aria-pressed="false">Skeleton</button>
+              <button class="layer-chip" data-layer="vitals" type="button" aria-pressed="false">Vitals</button>
+            </div>
+
+            <p class="layer-narrative" id="layerNarrative">
+              当前展示 3D Shell。先用真实三维人体建立身体感，再切到 Body Map、器官、骨骼和生命体征层。
+            </p>
+
+            <div class="body-stage" id="bodyStage" data-layer="3d" data-state="stable">
+              <div class="body-aura body-aura-a"></div>
+              <div class="body-aura body-aura-b"></div>
+              <div class="scan-line"></div>
+              <div class="body-model-wrap">
+                <div class="body-model-panel"></div>
+                <model-viewer
+                  class="body-model-viewer"
+                  src="assets/cesium-man.glb"
+                  poster="assets/body-reference-shell.png"
+                  alt="3D human body model"
+                  camera-controls
+                  auto-rotate
+                  rotation-per-second="12deg"
+                  interaction-prompt="none"
+                  environment-image="neutral"
+                  shadow-intensity="1"
+                  exposure="1.05"
+                  camera-orbit="0deg 80deg 115%"
+                  min-camera-orbit="auto 60deg auto"
+                  max-camera-orbit="auto 110deg auto"
+                  touch-action="pan-y"
+                ></model-viewer>
+              </div>
+              <div class="body-reference-wrap">
+                <div class="body-reference-panel"></div>
+                <img
+                  class="body-reference-image"
+                  src="assets/body-reference-shell.png"
+                  alt="Human body reference figure"
+                  draggable="false"
+                />
+              </div>
+
+              <svg class="body-svg" viewBox="0 0 520 860" aria-hidden="true">
+                <defs>
+                  <linearGradient id="shellGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#dff8ff" stop-opacity="0.22"></stop>
+                    <stop offset="100%" stop-color="#50ccee" stop-opacity="0.03"></stop>
+                  </linearGradient>
+                  <linearGradient id="shellSideGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f5fbff" stop-opacity="0.16"></stop>
+                    <stop offset="100%" stop-color="#66d3f1" stop-opacity="0.04"></stop>
+                  </linearGradient>
+                  <linearGradient id="boneGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#fcfcfa"></stop>
+                    <stop offset="100%" stop-color="#d6eaf0"></stop>
+                  </linearGradient>
+                  <linearGradient id="organGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#87d8ff"></stop>
+                    <stop offset="100%" stop-color="#1e7ca5"></stop>
+                  </linearGradient>
+                  <linearGradient id="muscleGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#d6f1f8" stop-opacity="0.18"></stop>
+                    <stop offset="100%" stop-color="#67c9e7" stop-opacity="0.06"></stop>
+                  </linearGradient>
+                  <linearGradient id="vitalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#53d2f4" stop-opacity="0"></stop>
+                    <stop offset="50%" stop-color="#53d2f4" stop-opacity="1"></stop>
+                    <stop offset="100%" stop-color="#53d2f4" stop-opacity="0"></stop>
+                  </linearGradient>
+                  <path
+                    id="bodyOutlineShape"
+                    d="M260 74
+                      C232 76 214 94 208 124
+                      C204 143 195 154 181 165
+                      C165 178 156 196 151 224
+                      C145 260 144 316 149 372
+                      C154 426 160 482 165 536
+                      C168 568 167 592 160 620
+                      C151 649 150 677 156 700
+                      C162 721 175 726 189 712
+                      C199 702 206 684 210 660
+                      C212 710 214 760 216 804
+                      C217 819 228 832 242 832
+                      C252 832 258 824 260 812
+                      C262 824 268 832 278 832
+                      C292 832 303 819 304 804
+                      C306 760 308 710 310 660
+                      C314 684 321 702 331 712
+                      C345 726 358 721 364 700
+                      C370 677 369 649 360 620
+                      C353 592 352 568 355 536
+                      C360 482 366 426 371 372
+                      C376 316 375 260 369 224
+                      C364 196 355 178 339 165
+                      C325 154 316 143 312 124
+                      C306 94 288 76 260 74 Z"
+                  ></path>
+                  <filter id="softGlow">
+                    <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+                  </filter>
+                  <clipPath id="bodyClip">
+                    <use href="#bodyOutlineShape"></use>
+                  </clipPath>
+                </defs>
+
+                <ellipse class="body-floor" cx="260" cy="830" rx="124" ry="18"></ellipse>
+                <ellipse class="body-floor inner" cx="260" cy="830" rx="86" ry="12"></ellipse>
+
+                <g class="figure-base">
+                  <path
+                    class="shell-side shell-left"
+                    d="M258 76
+                      C236 80 220 98 214 124
+                      C208 147 196 164 180 177
+                      C164 190 154 212 149 242
+                      C143 280 143 330 149 388
+                      C154 438 160 488 164 536
+                      C167 568 166 596 158 626
+                      C150 653 149 678 154 698
+                      C160 719 172 723 184 710
+                      C195 698 203 678 209 646
+                      C211 710 214 764 217 804
+                      C218 818 228 830 241 830
+                      C249 830 255 824 258 814 Z"
+                  ></path>
+                  <path
+                    class="shell-side shell-right"
+                    d="M262 76
+                      C284 80 300 98 306 124
+                      C312 147 324 164 340 177
+                      C356 190 366 212 371 242
+                      C377 280 377 330 371 388
+                      C366 438 360 488 356 536
+                      C353 568 354 596 362 626
+                      C370 653 371 678 366 698
+                      C360 719 348 723 336 710
+                      C325 698 317 678 311 646
+                      C309 710 306 764 303 804
+                      C302 818 292 830 279 830
+                      C271 830 265 824 262 814 Z"
+                  ></path>
+                  <use class="shell-fill" href="#bodyOutlineShape"></use>
+                  <path class="shell-centerline" d="M260 118 C258 216 258 316 260 410 C262 510 262 648 260 792"></path>
+                  <path class="shell-collar" d="M214 164 C232 152 248 148 260 148 C272 148 288 152 306 164"></path>
+                  <path class="shell-hip-line" d="M210 520 C228 532 292 532 310 520"></path>
+                  <use class="shell-outline" href="#bodyOutlineShape"></use>
+                </g>
+
+                <g clip-path="url(#bodyClip)">
+                  <g class="layer skin-layer">
+                    <ellipse class="skin-core" cx="260" cy="110" rx="34" ry="40"></ellipse>
+                    <path class="muscle-plate" d="M216 178 C232 168 248 164 260 164 C272 164 288 168 304 178 C314 214 315 258 306 302 C294 328 226 328 214 302 C205 258 206 214 216 178 Z"></path>
+                    <path class="muscle-chest" d="M214 188 C200 214 196 250 202 292 C206 316 220 336 240 344 C248 310 249 264 242 204 C234 196 224 190 214 188 Z"></path>
+                    <path class="muscle-chest" d="M306 188 C320 214 324 250 318 292 C314 316 300 336 280 344 C272 310 271 264 278 204 C286 196 296 190 306 188 Z"></path>
+                    <path class="muscle-ab" d="M230 350 C218 388 217 434 224 484 C230 528 242 564 260 596 C278 564 290 528 296 484 C303 434 302 388 290 350 C274 358 246 358 230 350 Z"></path>
+                    <path class="muscle-arm" d="M182 194 C170 236 168 286 172 340 C176 396 182 444 192 494 C198 482 204 468 208 446 C198 364 196 278 202 212 C196 202 190 196 182 194 Z"></path>
+                    <path class="muscle-arm" d="M338 194 C350 236 352 286 348 340 C344 396 338 444 328 494 C322 482 316 468 312 446 C322 364 324 278 318 212 C324 202 330 196 338 194 Z"></path>
+                    <path class="muscle-leg" d="M224 546 C216 606 216 676 222 748 C228 780 238 804 252 818 C258 758 258 668 252 548 C242 552 234 552 224 546 Z"></path>
+                    <path class="muscle-leg" d="M296 546 C304 606 304 676 298 748 C292 780 282 804 268 818 C262 758 262 668 268 548 C278 552 286 552 296 546 Z"></path>
+                  </g>
+
+                  <g class="layer skeleton-layer">
+                    <ellipse class="bone-skull" cx="260" cy="110" rx="24" ry="31"></ellipse>
+                    <path class="bone-jaw" d="M244 128 C248 144 252 152 260 156 C268 152 272 144 276 128"></path>
+                    <path class="bone-sternum" d="M260 196 L260 326"></path>
+                    <path class="bone-spine" d="M260 164 C260 228 260 304 260 470"></path>
+                    <path class="bone-clavicle" d="M260 190 C244 190 228 196 208 208"></path>
+                    <path class="bone-clavicle" d="M260 190 C276 190 292 196 312 208"></path>
+                    <path class="bone-rib" d="M260 220 C238 212 220 224 206 246"></path>
+                    <path class="bone-rib" d="M260 220 C282 212 300 224 314 246"></path>
+                    <path class="bone-rib" d="M260 248 C234 240 216 256 202 282"></path>
+                    <path class="bone-rib" d="M260 248 C286 240 304 256 318 282"></path>
+                    <path class="bone-rib" d="M260 280 C238 274 222 290 210 312"></path>
+                    <path class="bone-rib" d="M260 280 C282 274 298 290 310 312"></path>
+                    <path class="bone-pelvis" d="M230 446 C214 454 204 472 202 494 C220 510 240 516 256 510"></path>
+                    <path class="bone-pelvis" d="M290 446 C306 454 316 472 318 494 C300 510 280 516 264 510"></path>
+                    <path class="bone-long" d="M208 208 C194 258 186 316 182 390"></path>
+                    <path class="bone-long" d="M312 208 C326 258 334 316 338 390"></path>
+                    <path class="bone-forearm" d="M182 390 C182 444 188 500 202 556"></path>
+                    <path class="bone-forearm" d="M338 390 C338 444 332 500 318 556"></path>
+                    <path class="bone-long" d="M232 510 C228 578 228 654 232 744"></path>
+                    <path class="bone-long" d="M288 510 C292 578 292 654 288 744"></path>
+                    <path class="bone-calf" d="M232 744 C232 776 238 802 248 820"></path>
+                    <path class="bone-calf" d="M288 744 C288 776 282 802 272 820"></path>
+                  </g>
+
+                  <g class="layer organ-layer">
+                    <path class="organ-brain" d="M236 84 C246 72 274 72 284 84 C292 96 292 118 282 132 C270 142 250 142 238 132 C228 118 228 96 236 84 Z"></path>
+                    <path class="organ-lung" d="M220 206 C198 224 192 260 198 304 C204 336 220 354 238 358 C248 330 250 292 246 232 C240 220 232 212 220 206 Z"></path>
+                    <path class="organ-lung" d="M300 206 C322 224 328 260 322 304 C316 336 300 354 282 358 C272 330 270 292 274 232 C280 220 288 212 300 206 Z"></path>
+                    <path class="organ-heart" d="M254 254 C264 236 290 240 294 262 C296 286 278 298 262 314 C240 296 226 286 228 262 C232 240 248 236 254 254 Z"></path>
+                    <path class="organ-liver" d="M282 360 C314 360 334 374 334 392 C322 408 294 414 262 408 C262 382 268 366 282 360 Z"></path>
+                    <path class="organ-stomach" d="M242 366 C230 378 226 396 230 416 C236 434 248 446 258 454 C264 430 266 404 262 374 C256 368 250 366 242 366 Z"></path>
+                    <path class="organ-kidney" d="M226 412 C214 420 210 438 214 458 C220 474 228 482 238 484 C242 468 242 444 238 420 C234 414 230 412 226 412 Z"></path>
+                    <path class="organ-kidney" d="M294 412 C306 420 310 438 306 458 C300 474 292 482 282 484 C278 468 278 444 282 420 C286 414 290 412 294 412 Z"></path>
+                    <path class="organ-gut" d="M238 470 C224 486 220 510 224 536 C230 574 244 598 260 620 C276 598 290 574 296 536 C300 510 296 486 282 470 C266 478 254 478 238 470 Z"></path>
+                  </g>
+
+                  <g class="layer vital-layer">
+                    <path class="vital-column" d="M260 94 C260 146 260 212 260 294 C260 392 260 498 260 640"></path>
+                    <path class="vital-flow" d="M186 230 C214 214 238 208 260 208 C286 208 312 226 334 260"></path>
+                    <path class="vital-flow" d="M190 456 C218 438 240 432 260 432 C286 432 310 448 330 478"></path>
+                    <path class="vital-wave" d="M180 330 L204 330 L220 310 L236 344 L254 286 L280 372 L300 330 L340 330"></path>
+                    <path class="vital-wave lower" d="M194 566 L218 566 L234 544 L252 588 L268 534 L290 606 L306 566 L328 566"></path>
+                    <circle class="vital-node" cx="260" cy="122" r="6"></circle>
+                    <circle class="vital-node" cx="260" cy="264" r="8"></circle>
+                    <circle class="vital-node" cx="260" cy="432" r="7"></circle>
+                    <circle class="vital-node" cx="236" cy="330" r="5"></circle>
+                    <circle class="vital-node" cx="284" cy="330" r="5"></circle>
+                  </g>
+                </g>
+              </svg>
+
+              <article class="stage-note note-head">
+                <span>Neural Load</span>
+                <strong id="brainLoadValue">53%</strong>
+                <small id="brainLoadNote">认知负荷仍在稳态区间</small>
+              </article>
+
+              <article class="stage-note note-lung">
+                <span>Lung Exchange</span>
+                <strong id="lungExchangeValue">88%</strong>
+                <small id="lungExchangeNote">氧交换维持友好区间</small>
+              </article>
+
+              <article class="stage-note note-heart">
+                <span>Cardiac Load</span>
+                <strong id="cardiacLoadValue">52%</strong>
+                <small id="cardiacLoadNote">心血管压力尚可</small>
+              </article>
+
+              <article class="stage-note note-core">
+                <span>Recovery Reserve</span>
+                <strong id="recoveryValue">74</strong>
+                <small id="recoveryNote">身体仍有恢复余量</small>
+              </article>
+            </div>
+
+            <div class="stage-footer" id="subjectFacts"></div>
+          </section>
+        </div>
+      </header>
+
+      <section class="section atlas-section reveal" id="atlas">
+        <div class="section-intro">
+          <span class="eyebrow">Twin Composition</span>
+          <h2>不是再做一个健康仪表盘，而是把身体、结构、状态和变化路径收进同一个 Twin 里。</h2>
+        </div>
+
+        <div class="atlas-grid">
+          <div class="atlas-copy">
+            <p class="summary-copy" id="summaryCopy">
+              当前判断：身体仍在高质量输出窗口，但晚间如果继续增加社交和会议，恢复储备会先掉下来。
+            </p>
+            <div class="system-bars" id="systemBars"></div>
+          </div>
+
+          <div class="composition-rail" id="compositionRail"></div>
+        </div>
+      </section>
+
+      <section class="section overview-section reveal" id="overview">
+        <div class="profile-pane">
+          <span class="eyebrow">Subject Profile</span>
+          <h2 id="profileName">林越</h2>
+          <p class="profile-role" id="profileRole">产品战略负责人 / 31 岁 / 上海 / Bio Twin Subject</p>
+          <p class="identity-brief" id="identityBrief">
+            这个身体对连续高密度输入敏感，一旦社交和会议叠加，心率、呼吸和神经负荷会一起抬升。
+          </p>
+
+          <div class="profile-grid">
+            <article>
+              <span>Archetype</span>
+              <strong id="profileArchetype">HIGH COGNITION / LOW NOISE</strong>
+            </article>
+            <article>
+              <span>Recovery</span>
+              <strong id="profileRecovery">SOLO WALK / LOW INPUT</strong>
+            </article>
+            <article>
+              <span>Best Window</span>
+              <strong id="profileWindow">10:30 - 12:30</strong>
+            </article>
+            <article>
+              <span>Core Values</span>
+              <strong id="profileValues">OXYGEN / CLARITY / RECOVERY</strong>
+            </article>
+          </div>
+
+          <div class="trait-cloud" id="traitCloud"></div>
+        </div>
+
+        <div class="signal-pane">
+          <div class="signal-pane-head">
+            <span class="eyebrow">Live Inputs</span>
+            <h2>这个 Twin 是怎么被搭起来的</h2>
+          </div>
+          <div class="signal-stream" id="signalStream"></div>
+        </div>
+      </section>
+
+      <section class="section simulator-section reveal" id="simulator">
+        <div class="section-intro">
+          <span class="eyebrow">Scenario Sandbox</span>
+          <h2>调节睡眠、会议、社交、运动和独处时间，观察这个身体会怎么改写自己的状态。</h2>
+        </div>
+
+        <div class="simulator-grid">
+          <div class="control-column">
+            <label class="control-row">
+              <div>
+                <span>昨晚睡眠</span>
+                <strong><span id="sleepValue">7.2</span> 小时</strong>
+              </div>
+              <input id="sleepInput" type="range" min="4.5" max="9.5" step="0.1" value="7.2" />
+            </label>
+
+            <label class="control-row">
+              <div>
+                <span>今天会议密度</span>
+                <strong><span id="meetingValue">3</span> / 5</strong>
+              </div>
+              <input id="meetingInput" type="range" min="1" max="5" step="1" value="3" />
+            </label>
+
+            <label class="control-row">
+              <div>
+                <span>社交消耗</span>
+                <strong><span id="socialValue">2</span> / 5</strong>
+              </div>
+              <input id="socialInput" type="range" min="1" max="5" step="1" value="2" />
+            </label>
+
+            <label class="control-row">
+              <div>
+                <span>运动分钟数</span>
+                <strong><span id="movementValue">35</span> 分钟</strong>
+              </div>
+              <input id="movementInput" type="range" min="0" max="90" step="5" value="35" />
+            </label>
+
+            <label class="control-row">
+              <div>
+                <span>独处恢复时间</span>
+                <strong><span id="soloValue">55</span> 分钟</strong>
+              </div>
+              <input id="soloInput" type="range" min="0" max="120" step="5" value="55" />
+            </label>
+          </div>
+
+          <div class="forecast-column">
+            <div class="forecast-copy">
+              <span class="eyebrow">Simulation Output</span>
+              <h3 id="forecastTitle">接下来 6 小时仍在可持续输出区</h3>
+              <p id="forecastSummary">
+                氧合和灌注整体稳定，但如果继续叠加高密度输入，神经负荷和心率会一起上扬。
+              </p>
+            </div>
+
+            <div class="vital-grid">
+              <article>
+                <span>SpO2</span>
+                <strong id="spo2Value">97%</strong>
+                <small id="spo2Note">氧合稳定</small>
+              </article>
+              <article>
+                <span>Heart Rate</span>
+                <strong id="heartRateValue">64 BPM</strong>
+                <small id="heartRateNote">心率处于稳态区间</small>
+              </article>
+              <article>
+                <span>Blood Pressure</span>
+                <strong id="pressureValue">113 / 74</strong>
+                <small id="pressureNote">循环压力处于可控区间</small>
+              </article>
+              <article>
+                <span>HRV</span>
+                <strong id="hrvValue">65 ms</strong>
+                <small id="hrvNote">恢复余量仍然友好</small>
+              </article>
+            </div>
+
+            <div class="forecast-bars" id="forecastBars"></div>
+            <div class="recommendation" id="recommendCard">
+              推荐排法：前 90 分钟完成最难任务，随后转向必要同步，晚上给心率和呼吸留出回落空间。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section lower-section reveal">
+        <div class="timeline-pane">
+          <div class="section-intro compact">
+            <span class="eyebrow">Memory Layer</span>
+            <h2>为什么同样的输入，这个身体会给出这样的反应</h2>
+          </div>
+          <div class="memory-list" id="memoryList"></div>
+        </div>
+
+        <div class="console-pane" id="converse">
+          <div class="section-intro compact">
+            <span class="eyebrow">Twin Dialogue</span>
+            <h2>直接问这个 Twin，今天该怎么安排这个身体</h2>
+          </div>
+
+          <div class="prompt-row" id="quickPrompts"></div>
+          <div class="chat-log" id="chatLog"></div>
+
+          <form class="chat-form" id="chatForm">
+            <input
+              id="chatInput"
+              type="text"
+              autocomplete="off"
+              placeholder="比如：如果今晚继续开会，这个版本的我会怎样？"
+            />
+            <button type="submit">发送</button>
+          </form>
+        </div>
+      </section>
+
+      <footer class="section footer-note reveal">
+        <p>
+          当前版本仍是纯前端概念验证。后续如果继续做实，可以接入可穿戴设备、体脂秤、健康记录、日历、影像数据和 3D 扫描，让这个 Twin 从“好看”走向“可信”。
+        </p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
