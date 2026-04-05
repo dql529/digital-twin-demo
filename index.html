@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260405c" />
+    <link rel="stylesheet" href="styles.css?v=20260405d" />
   </head>
   <body>
     <div class="page-noise"></div>
@@ -304,6 +304,19 @@
             </div>
 
             <div class="stage-dock">
+              <div class="mobile-stage-readout" aria-hidden="true">
+                <article class="mobile-readout">
+                  <span>Lung Exchange</span>
+                  <strong id="mobileLungValue">88%</strong>
+                  <small id="mobileLungNote">氧交换维持友好区间</small>
+                </article>
+                <article class="mobile-readout">
+                  <span>Recovery Reserve</span>
+                  <strong id="mobileRecoveryValue">74</strong>
+                  <small id="mobileRecoveryNote">身体仍有恢复余量</small>
+                </article>
+              </div>
+
               <div class="layer-switch" id="layerSwitch">
                 <button class="layer-chip is-active" data-layer="skin" type="button" aria-pressed="true">Body Shell</button>
                 <button class="layer-chip" data-layer="organs" type="button" aria-pressed="false">Organs</button>
@@ -562,6 +575,6 @@
       </footer>
     </main>
 
-    <script src="app.js?v=20260405b"></script>
+    <script src="app.js?v=20260405d"></script>
   </body>
 </html>

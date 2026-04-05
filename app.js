@@ -155,10 +155,14 @@ const refs = {
   brainLoadNote: document.querySelector("#brainLoadNote"),
   lungExchangeValue: document.querySelector("#lungExchangeValue"),
   lungExchangeNote: document.querySelector("#lungExchangeNote"),
+  mobileLungValue: document.querySelector("#mobileLungValue"),
+  mobileLungNote: document.querySelector("#mobileLungNote"),
   cardiacLoadValue: document.querySelector("#cardiacLoadValue"),
   cardiacLoadNote: document.querySelector("#cardiacLoadNote"),
   recoveryValue: document.querySelector("#recoveryValue"),
   recoveryNote: document.querySelector("#recoveryNote"),
+  mobileRecoveryValue: document.querySelector("#mobileRecoveryValue"),
+  mobileRecoveryNote: document.querySelector("#mobileRecoveryNote"),
   quickPrompts: document.querySelector("#quickPrompts"),
   chatLog: document.querySelector("#chatLog"),
   chatForm: document.querySelector("#chatForm"),
@@ -851,10 +855,14 @@ function renderState() {
   refs.brainLoadNote.textContent = getBrainLoadNote(state);
   refs.lungExchangeValue.textContent = `${state.lungExchange}%`;
   refs.lungExchangeNote.textContent = getLungExchangeNote(state);
+  refs.mobileLungValue.textContent = `${state.lungExchange}%`;
+  refs.mobileLungNote.textContent = getLungExchangeNote(state);
   refs.cardiacLoadValue.textContent = `${state.cardiacLoad}%`;
   refs.cardiacLoadNote.textContent = getCardiacLoadNote(state);
   refs.recoveryValue.textContent = String(state.recoveryReserve);
   refs.recoveryNote.textContent = getRecoveryNote(state);
+  refs.mobileRecoveryValue.textContent = String(state.recoveryReserve);
+  refs.mobileRecoveryNote.textContent = getRecoveryNote(state);
 
   renderHeroEvidence(state);
   renderSystemBars(state);

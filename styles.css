@@ -317,6 +317,10 @@ button {
   padding: 0 8px;
 }
 
+.mobile-stage-readout {
+  display: none;
+}
+
 .section-intro.compact,
 .signal-pane-head {
   display: grid;
@@ -1637,6 +1641,46 @@ button {
     padding: 0;
   }
 
+  .mobile-stage-readout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mobile-readout {
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(190, 229, 243, 0.12);
+    border-radius: 16px;
+    background:
+      linear-gradient(180deg, rgba(10, 18, 28, 0.84), rgba(7, 14, 22, 0.7)),
+      rgba(9, 16, 25, 0.72);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.16),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
+
+  .mobile-readout span {
+    display: block;
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+  }
+
+  .mobile-readout strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.32rem;
+    letter-spacing: -0.05em;
+  }
+
+  .mobile-readout small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-soft);
+    line-height: 1.45;
+  }
+
   .body-stage {
     min-height: 540px;
     height: clamp(540px, 68svh, 680px);
@@ -1850,6 +1894,10 @@ button {
   .body-stage {
     min-height: 500px;
     height: clamp(500px, 62svh, 600px);
+  }
+
+  .mobile-stage-readout {
+    grid-template-columns: 1fr;
   }
 }
 
